@@ -27,6 +27,8 @@ import android.view.View;
 import com.yanzhenjie.swiperecyclerview.R;
 import com.yanzhenjie.swiperecyclerview.adapter.MenuPagerAdapter;
 import com.yanzhenjie.swiperecyclerview.fragment.MenuFragment;
+import com.yanzhenjie.swiperecyclerview.fragment.SecondFragment;
+import com.yanzhenjie.swiperecyclerview.view.MyViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ import java.util.List;
  */
 public class ViewPagerMenuActivity extends AppCompatActivity {
 
-    private ViewPager mViewPager;
+    private MyViewPager mViewPager;
 
     private MenuPagerAdapter mMenuPagerAdapter;
 
@@ -53,14 +55,14 @@ public class ViewPagerMenuActivity extends AppCompatActivity {
         findViewById(R.id.btn_two).setOnClickListener(onClickListener);
         findViewById(R.id.btn_three).setOnClickListener(onClickListener);
 
-        mViewPager = (ViewPager) findViewById(R.id.view_pager_menu);
+        mViewPager = (MyViewPager) findViewById(R.id.view_pager_menu);
         mViewPager.addOnPageChangeListener(simpleOnPageChangeListener);
         mViewPager.setOffscreenPageLimit(2);
 
         List<Fragment> fragments = new ArrayList<>(3);
         fragments.add(MenuFragment.newInstance());
-        fragments.add(MenuFragment.newInstance());
-        fragments.add(MenuFragment.newInstance());
+        fragments.add(new SecondFragment());
+        fragments.add(new SecondFragment());
 
         mMenuPagerAdapter = new MenuPagerAdapter(getSupportFragmentManager(), fragments);
         mViewPager.setAdapter(mMenuPagerAdapter);
