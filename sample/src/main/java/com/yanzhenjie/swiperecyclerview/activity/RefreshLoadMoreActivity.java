@@ -69,7 +69,7 @@ public class RefreshLoadMoreActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         mContext = this;
-
+        //刷新
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
         mSwipeRefreshLayout.setOnRefreshListener(mOnRefreshListener);
 
@@ -77,6 +77,8 @@ public class RefreshLoadMoreActivity extends AppCompatActivity {
         for (int i = 0; i < size; i++) {
             mStrings.add("我是第" + i + "个。");
         }
+
+        //RecyclerView
         mSwipeMenuRecyclerView = (SwipeMenuRecyclerView) findViewById(R.id.recycler_view);
         mSwipeMenuRecyclerView.setLayoutManager(new LinearLayoutManager(this));// 布局管理器。
         mSwipeMenuRecyclerView.setHasFixedSize(true);// 如果Item够简单，高度是确定的，打开FixSize将提高性能。
@@ -90,9 +92,11 @@ public class RefreshLoadMoreActivity extends AppCompatActivity {
         mSwipeMenuRecyclerView.setSwipeMenuCreator(swipeMenuCreator);
         // 设置菜单Item点击监听。
         mSwipeMenuRecyclerView.setSwipeMenuItemClickListener(menuItemClickListener);
-
+        //传递数据
         mMenuAdapter = new MenuAdapter(mStrings);
+        //RecyclerView点击世事件
         mMenuAdapter.setOnItemClickListener(onItemClickListener);
+        //设置适配器
         mSwipeMenuRecyclerView.setAdapter(mMenuAdapter);
     }
 
@@ -105,6 +109,7 @@ public class RefreshLoadMoreActivity extends AppCompatActivity {
             mSwipeMenuRecyclerView.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    //刷新
                     mSwipeRefreshLayout.setRefreshing(false);
                 }
             }, 2000);
@@ -187,7 +192,9 @@ public class RefreshLoadMoreActivity extends AppCompatActivity {
             }
         }
     };
-
+	/**
+     * RecyclerView点击事件
+     */
     private OnItemClickListener onItemClickListener = new OnItemClickListener() {
         @Override
         public void onItemClick(int position) {
